@@ -1,0 +1,55 @@
+<idea-plugin version="2">
+  <id>org.jglrxavpok.crashcount</id>
+  <name>CrashCounter</name>
+  <version>0.1</version>
+  <vendor email="jglrxavpok@gmail.com" url="http://github.com/jglrxavpok/CrashCounter">CrashCounter</vendor>
+
+  <description><![CDATA[
+      This plugin counts the number of crashes since it has been launched.<br>
+      <em>Errors are also counted on a separate counter</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+    <extensions defaultExtensionNs="com.intellij">
+
+        <consoleActionsPostProcessor implementation="org.jglrxavpok.crashcounter.ConsoleProcessor"/>
+
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+  <project-components>
+
+  </project-components>
+
+  <actions>
+    <!-- Add your actions here -->
+      <action id="launchCounter" class="org.jglrxavpok.crashcounter.CounterLaunch" text="Launch the CrashCounter"
+              description="Establishes the connection to the back-end displayer in order to display the number of crashes">
+          <add-to-group group-id="ToolsMenu" anchor="last"/>
+      </action>
+  </actions>
+
+    <module-components>
+        <component>
+            <implementation-class>org.jglrxavpok.crashcounter.CrashCounter</implementation-class>
+        </component>
+    </module-components>
+</idea-plugin>

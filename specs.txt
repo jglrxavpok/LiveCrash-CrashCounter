@@ -1,0 +1,20 @@
+Socket based interaction between this plugin and the OBS (or other software) one
+
+0x0: Null or invalid packet
+0x1: Connection
+0x2: Increment crash count
+0x3: Increment error count
+
+CrashCounter part TODOs list
+===================
+- Connect to the displayer
+- Get the console output
+- Analyse and try to find errors/crashes (ConsoleHandlers ?)
+- Prepare a packet
+- Send da packet
+
+CrashDisplayer part TODOs list
+===================
+- ???
+- PROFIT
+- Make a test server! (via Eclipse, for funzies)
