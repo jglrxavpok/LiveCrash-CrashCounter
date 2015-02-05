@@ -5,7 +5,7 @@ package org.jglrxavpok.crashcounter.packets;
  */
 public class PacketErrorFound extends PacketProblemFound {
 
-    public PacketErrorFound(String[] crashTrace) {
-        super(0x2, crashTrace);
+    public PacketErrorFound(String header, String[] crashTrace) {
+        super(0x2, header, crashTrace);
     }
 }

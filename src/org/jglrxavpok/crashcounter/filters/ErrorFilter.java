@@ -3,7 +3,11 @@ package org.jglrxavpok.crashcounter.filters;
 import com.google.common.collect.Lists;
 import com.intellij.execution.filters.Filter;
 import org.jetbrains.annotations.Nullable;
+import org.jglrxavpok.crashcounter.CrashCounter;
+import org.jglrxavpok.crashcounter.NetworkHelper;
+import org.jglrxavpok.crashcounter.packets.PacketCrashFound;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -40,6 +44,11 @@ public class ErrorFilter implements Filter {
     private void flushStackTrace() {
         if (!stackTrace.isEmpty()) {
             // TODO: send stack trace
+            try {
+                NetworkHelper.write(CrashCounter.instance.getSocket(), new PacketCrashFound(currentException, stackTrace.toArray(new String[0])));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("[==== START OF STACK TRACE ====]\nException: " + currentException);
             for (String entry : stackTrace) { // TMP
                 System.out.println("Entry: " + entry.replace("\n", ""));

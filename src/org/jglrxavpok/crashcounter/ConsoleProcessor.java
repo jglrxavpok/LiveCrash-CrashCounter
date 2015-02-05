@@ -20,7 +20,7 @@ public class ConsoleProcessor extends ConsoleActionsPostProcessor {
     @NotNull
     public AnAction[] postProcess(@NotNull ConsoleView console, @NotNull AnAction[] actions) {
         CrashCounter counter = CrashCounter.instance;
-        if(/*counter.isLaunched() && */!counter.hasFilter(console)) {
+        if(counter.isLaunched() && !counter.hasFilter(console)) {
             counter.addFilter(console);
         }
         return actions;
@@ -29,7 +29,7 @@ public class ConsoleProcessor extends ConsoleActionsPostProcessor {
     @NotNull
     public AnAction[] postProcessPopupActions(@NotNull ConsoleView console, @NotNull AnAction[] actions) {
         CrashCounter counter = CrashCounter.instance;
-        if(/*counter.isLaunched() && */!counter.hasFilter(console)) {
+        if(counter.isLaunched() && !counter.hasFilter(console)) {
             counter.addFilter(console);
         }
         return actions;
