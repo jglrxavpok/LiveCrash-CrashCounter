@@ -14,8 +14,8 @@ public class NetworkHelper {
 
     public static void write(Socket socket, AbstractPacket packet) throws IOException {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-        out.writeInt(packet.getId());
+        out.writeByte(packet.getId());
         packet.encode(out);
-        socket.getOutputStream().flush();
+        out.flush();
     }
 }

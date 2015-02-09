@@ -12,7 +12,7 @@ public abstract class PacketProblemFound extends AbstractPacket {
     private String header;
     private String[] crashTrace;
 
-    public PacketProblemFound(int id, String header, String[] crashTrace) {
+    public PacketProblemFound(byte id, String header, String[] crashTrace) {
         super(id);
         this.header = header;
         this.crashTrace = crashTrace;
@@ -20,20 +20,20 @@ public abstract class PacketProblemFound extends AbstractPacket {
 
     @Override
     public void decode(DataInput in) throws IOException {
-        header = in.readUTF();
-        int traceLength = in.readInt();
+        header = readString(in);
+        byte traceLength = in.readByte();
         crashTrace = new String[traceLength];
         for(int i = 0;i<traceLength;i++){
-            crashTrace[i] = in.readUTF();
+            crashTrace[i] = readString(in);
         }
     }
 
     @Override
     public void encode(DataOutput out) throws IOException {
-        out.writeUTF(header);
-        out.writeInt(crashTrace.length);
+        writeString(out, header);
+        out.writeByte((byte)crashTrace.length);
         for(String s : crashTrace) {
-            out.writeUTF(s);
+            writeString(out, s);
         }
     }
 }

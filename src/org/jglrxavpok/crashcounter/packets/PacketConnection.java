@@ -10,7 +10,7 @@ import java.io.IOException;
 public class PacketConnection extends AbstractPacket {
 
     public PacketConnection() {
-        super(0x1);
+        super((byte)0x1);
     }
 
     @Override

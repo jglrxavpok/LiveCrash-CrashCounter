@@ -1,15 +1,11 @@
 package org.jglrxavpok.crashcounter;
 
 import com.google.common.collect.Lists;
-import com.intellij.execution.filters.Filter;
-import com.intellij.execution.filters.HyperlinkInfo;
 import com.intellij.execution.ui.ConsoleView;
 import com.intellij.openapi.module.ModuleComponent;
 import com.intellij.openapi.module.Module;
-import com.intellij.openapi.project.Project;
-import com.jgoodies.common.collect.ArrayListModel;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jglrxavpok.crashcounter.filters.MCCrashFilter;
 import org.jglrxavpok.crashcounter.filters.ErrorFilter;
 import org.jglrxavpok.crashcounter.packets.PacketConnection;
 
@@ -88,10 +84,10 @@ public class CrashCounter implements ModuleComponent {
         }
     }
 
-    public void addFilter(ConsoleView console) {
+    public void addFilters(ConsoleView console) {
         filters.add(console);
         console.addMessageFilter(new ErrorFilter());
-
+        console.addMessageFilter(new MCCrashFilter());
     }
 
     public boolean hasFilter(ConsoleView console) {
